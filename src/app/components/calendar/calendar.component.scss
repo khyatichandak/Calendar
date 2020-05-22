@@ -1,3 +1,7 @@
 .card{
     min-width:27vw !important;
+    box-shadow: 0px 0px 5px lightgray;
+}
+.card-img-top, .card-text{
+    margin: 10px 0px;
 }

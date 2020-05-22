@@ -24,6 +24,7 @@ export class CalendarComponent implements OnInit {
             timezone: item.timezone,
             description: item.description_short,
             mediumImage: item.images[0].sizes.medium.url,
+            costType: item.cost_type,
           }
           return event;
         })

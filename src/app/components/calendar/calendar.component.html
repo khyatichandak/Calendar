@@ -1,27 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="#"><h3>TIMELY CALENDAR</h3></a>
+</nav>
+
 <div class="container">
   <div class="card-deck">
-    <div *ngFor="let item of events; let i = index" class="card m-4">
-      <img
-        class="card-img-top"
-        src="{{ events[i].mediumImage }}"
-        alt="{{ events[i].title }}"
-      />
+    <div *ngFor="let item of events; let i = index" class="card m-2">
       <div class="card-body">
         <h5 class="card-title">{{ events[i].title }}</h5>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-info">
-            {{ events[i].startTime | date: "d MMM yy" }}<br />
-            {{ events[i].startTime | date: "h:mm" }}{{ " "
-            }}{{ events[i].timezone }}
-          </button>
-        </div>
+        <img
+          class="card-img-top"
+          src="{{ events[i].mediumImage }}"
+          alt="{{ events[i].title }}"
+        />
+        <button class="btn btn-info btn-block">
+          {{ events[i].startTime | date: "d MMM yyyy" }}
+          <strong>@</strong>
+          {{ events[i].startTime | date: "h:mm" }} {{ " " }}
+          {{ events[i].timezone | slice: 0:3 }}
+        </button>
 
         <p class="card-text">
           {{ events[i].description }}
         </p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+
+        <button class="btn btn-success" *ngIf="events[i].costType">
+          {{
+            events[i].costType == "paid"
+              ? "TICKETS"
+              : (events[i].costType | uppercase)
+          }}
+        </button>
       </div>
     </div>
   </div>

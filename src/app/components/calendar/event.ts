@@ -5,4 +5,5 @@ export interface Event {
     timezone: string;
     description: string;
     mediumImage: string;
+    costType: string;
 }
