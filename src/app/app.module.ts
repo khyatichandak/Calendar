@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Constants } from 'src/app/configs/constants';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarService } from './services/calendar.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [Constants, CalendarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

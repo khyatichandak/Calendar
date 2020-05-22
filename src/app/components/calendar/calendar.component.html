@@ -1,27 +1,23 @@
 <div class="container">
   <div class="card-deck">
-    <div *ngFor="let item of items; let i = index" class="card m-4">
-      <img class="card-img-top" src="..." alt="Card image cap" />
+    <div *ngFor="let item of events; let i = index" class="card m-4">
+      <img
+        class="card-img-top"
+        src="{{ events[i].mediumImage }}"
+        alt="{{ events[i].title }}"
+      />
       <div class="card-body">
-        <h5 class="card-title">{{ items[i].title }}</h5>
+        <h5 class="card-title">{{ events[i].title }}</h5>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-info">
-            {{ items[i].start_datetime | date: "d MMM yy" }}<br />
-            {{ items[i].start_datetime | date: "h:mm" }}{{ " "
-            }}{{ items[i].timezone }}
-            <!-- {{ items[i].start_datetime | date: "EEE" }}<br /> -->
-            <!-- {{ items[i].start_datetime | date: "d MMM yy EEE" }} -->
-          </button>
-          <button type="button" class="btn btn-outline-info">
-            {{ items[i].end_datetime | date: "d MMM yy" }}<br />
-            {{ items[i].end_datetime | date: "h:mm" }}{{ " "
-            }}{{ items[i].timezone }}
-            <!-- {{ items[i].end_datetime | date: "EEE" }} -->
+            {{ events[i].startTime | date: "d MMM yy" }}<br />
+            {{ events[i].startTime | date: "h:mm" }}{{ " "
+            }}{{ events[i].timezone }}
           </button>
         </div>
 
         <p class="card-text">
-          {{ items[i].description_short }}
+          {{ events[i].description }}
         </p>
       </div>
       <div class="card-footer">

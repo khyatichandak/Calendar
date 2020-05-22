@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarService } from '../../calendar.service';
+import { CalendarService } from '../../services/calendar.service';
+import { Event } from './event';
 
 @Component({
   selector: 'app-calendar',
@@ -7,28 +8,25 @@ import { CalendarService } from '../../calendar.service';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-
-  calendarSetting;
-  events;
-  items;
+  events: Event[] = [];
   constructor(
-    private calendarService: CalendarService
+    private calendarService: CalendarService,
   ) { }
 
   ngOnInit() {
-
-    this.calendarService.getCalendarSettings()
-    .subscribe(data=>{
-      this.calendarSetting=data.data;
-    })
-    
-    setTimeout(() => {
-      this.calendarService.getEventsList(this.calendarSetting.id)
-      .subscribe(data=>{
-        this.events=data.data;
-        this.items=data.data.items;
+    this.calendarService.getCalendarEvents()
+      .then(res => {
+        this.events = res["items"].map(item => {
+          const event = {
+            title: item.title,
+            startTime: new Date(item.start_datetime),
+            endTime: new Date(item.end_datetime),
+            timezone: item.timezone,
+            description: item.description_short,
+            mediumImage: item.images[0].sizes.medium.url,
+          }
+          return event;
+        })
       });
-    }, 2000);
   }
-  
 }
